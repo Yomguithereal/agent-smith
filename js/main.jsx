@@ -1,15 +1,13 @@
-var React = require('react');
+/**
+ * Agent Smith Main Script
+ * ========================
+ *
+ * Launching the application.
+ */
+var React = require('react'),
+    Router = require('react-router'),
+    routes = require('./routes.jsx');
 
-console.log('Yeah');
-
-var App = React.createClass({
-  render: function() {
-    return <div>Hello</div>;
-  }
+Router.run(routes, function(Handler) {
+  React.render(<Handler />, document.body);
 });
-
-var test = [0, 2, 3].map(x => x + 1);
-console.log('hry')
-
-var sigma = require('./lib/sigma.js');
-console.log(sigma.instances(0));
