@@ -1,0 +1,44 @@
+{
+  "name": "agent-smith",
+  "version": "0.0.1",
+  "description": "Simple neo4jmyadmin powered by sigma.js",
+  "main": "./js/main.js",
+  "scripts": {
+    "start": "http-server -p 8000 & node ./scripts/build.js && fg",
+    "build-vendors": "browserify -r react -r './js/lib/sigma.js' -o ./build/vendors.build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yomguithereal/agent-smith"
+  },
+  "keywords": [
+    "neo4j",
+    "graph",
+    "sigma"
+  ],
+  "contributors": [
+    {
+      "name": "danieleguido",
+      "url": "https://github.com/danieleguido"
+    },
+    {
+      "name": "Yomguithereal",
+      "url": "https://github.com/Yomguithereal"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Yomguithereal/agent-smith/issues"
+  },
+  "homepage": "https://github.com/Yomguithereal/agent-smith",
+  "dependencies": {
+    "react": "^0.12.1"
+  },
+  "devDependencies": {
+    "browserify": "^7.0.2",
+    "es6ify": "^1.6.0",
+    "http-server": "^0.7.4",
+    "reactify": "^0.17.1",
+    "watchify": "^2.2.1"
+  }
+}
