@@ -6,8 +6,11 @@
  */
 var React = require('react'),
     Router = require('react-router'),
-    routes = require('./routes.jsx');
+    routes = require('./routes.jsx'),
+    controller = require('./controller.js');
 
 Router.run(routes, function(Handler) {
   React.render(<Handler />, document.body);
 });
+
+module.exports = controller;

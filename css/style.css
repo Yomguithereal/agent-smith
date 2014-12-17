@@ -113,7 +113,7 @@ aside>.inner{
 /*
   depth 1: the aside.;
 */
-.node-types{
+.node-labels{
 
 }
 
@@ -121,7 +121,7 @@ aside>.inner{
   margin: 0 6px;
 }
 
-.node-type{
+.node-label{
   background-color: #f5f5f5;
   font-size: 12px;
   padding: 2px 7px;
@@ -131,7 +131,7 @@ aside>.inner{
   cursor: pointer;
 }
 
-.node-type.active{
+.node-label.active{
   background-color: #d5d5d5;
 }
 
