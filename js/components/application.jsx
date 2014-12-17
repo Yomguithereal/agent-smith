@@ -5,14 +5,14 @@
  * Top-level component managing the application view.
  */
 var React = require('react'),
-    {RouteHandler} = require('react-router');
+    {RouteHandler} = require('react-router'),
+    Graph = require('./graph.jsx');
 
 module.exports = React.createClass({
   render: function() {
     return (
       <div id="layout">
 
-        // Header
         <header>
           <div className="inner">
             <div id="logo">Agent Smith</div>
@@ -22,7 +22,6 @@ module.exports = React.createClass({
           </div>
         </header>
 
-        // Menu
         <nav>
           <div className="inner">
             <a href="/" ><div>~</div></a>
@@ -32,17 +31,17 @@ module.exports = React.createClass({
           </div>
         </nav>
 
-        // Sidebar
         <aside>
           <div className="inner">
             <RouteHandler />
           </div>
         </aside>
 
-        // Sigma playground
         <div id="playground">
           <div className="inner">
-            <div sigma id="ground" data="network"></div>
+            <div id="ground">
+              <Graph />
+            </div>
           </div>
         </div>
 

@@ -42,7 +42,7 @@ function build() {
     })
     .on('error', function(err) {
       write.end();
-      console.log(err);
+      console.log(err.message);
     })
     .pipe(write);
 }
