@@ -57,5 +57,14 @@ controller.cypher = function(query) {
   });
 };
 
+// Events
+controller.on({
+
+  // Requesting sample data about a precise label
+  'query:label': function(e) {
+    this.cypher('MATCH n RETURN n LIMIT 50;');
+  }
+});
+
 // Exporting
 module.exports = controller;

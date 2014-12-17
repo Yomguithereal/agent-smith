@@ -15,7 +15,7 @@ var opts = {
 
 var bundler = browserify(opts)
     .transform(reactify)
-    .transform(es6ify.configure(/.jsx?/))
+    .transform(es6ify.configure(/^(?!.*iwanthue)+.+\.jsx?$/))
     .external('react')
     .external('react-router')
     .external(__dirname + '/../js/lib/sigma.js');
@@ -29,7 +29,7 @@ function pad(i) {
     return '' + i;
 }
 
-function build(firstTime) {
+function build() {
 
   var write = fs.createWriteStream(__dirname + '/../build/app.build.js', {encoding: 'utf-8'});
 

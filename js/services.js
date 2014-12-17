@@ -4,7 +4,9 @@
  *
  * Various services querying the neo4j database.
  */
-var _ = require('lodash');
+var _ = require('lodash'),
+    parser = require('./lib/cypher.js'),
+    palette = require('./palette.json');
 
 module.exports = {
 
@@ -18,7 +20,7 @@ module.exports = {
       console.log('XHR error', arguments);
     },
     success: function(data) {
-      console.log(data);
+      var results = parser(data.results[0]);
     }
   },
 
@@ -28,7 +30,16 @@ module.exports = {
     contentType: 'application/json',
     dataType: 'json',
     success: function(data) {
-      var sorted = _.sortBy(data, (a, b) => a + b);
+
+      var sorted = _(data)
+        .sortBy((a, b) => a + b)
+        .map(function(name, i) {
+          return {
+            name: name,
+            color: palette[i]
+          };
+        })
+        .value();
 
       this.select('data', 'labels').edit(sorted);
     }

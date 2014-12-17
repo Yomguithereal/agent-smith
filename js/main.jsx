@@ -13,4 +13,7 @@ Router.run(routes, function(Handler) {
   React.render(<Handler />, document.body);
 });
 
+// Fetching labels
+controller.request('labels');
+
 module.exports = controller;

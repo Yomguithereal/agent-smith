@@ -12,11 +12,14 @@ var React = require('react'),
  * Label button component
  */
 var LabelButton = React.createClass({
+  handleClick: function() {
+    controller.emit('query:label', this.props.name);
+  },
   render: function() {
     return (
-      <div className="node-label">
+      <div onClick={this.handleClick} className="node-label">
         {this.props.name + ' '}
-        <i className="fa fa-circle"></i>
+        <i className="fa fa-circle" style={{color: this.props.color}}></i>
       </div>
     );
   }
@@ -30,7 +33,7 @@ var LabelList = React.createClass({
   cursor: ['data', 'labels'],
   render: function() {
     var renderItem = function(label) {
-      return <LabelButton key={label} name={label} />;
+      return <LabelButton key={label.name} name={label.name} color={label.color} />;
     };
 
     return (
