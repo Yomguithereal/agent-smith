@@ -1,6 +1,6 @@
 /**
  * Agent Smith Graph Component
- * ==================================
+ * ============================
  *
  * Component rendering the sigma.js graph and refreshing it when needed.
  */
