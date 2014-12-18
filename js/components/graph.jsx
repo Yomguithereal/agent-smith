@@ -12,8 +12,15 @@ var React = require('react'),
  * Controls
  */
 var Controls = React.createClass({
-  getInitialState: function() {
-    return {inLayout: false};
+  layout: function() {
+    var sig = this.props.sigma;
+
+    if (sig.isForceAtlas2Running())
+      sig.stopForceAtlas2();
+    else
+      sig.startForceAtlas2();
+
+    this.forceUpdate();
   },
   zoom: function() {
     var camera = this.props.sigma.cameras.main;
@@ -46,7 +53,7 @@ var Controls = React.createClass({
     return (
       <div id="tools">
         <div className="tool">
-          <a onClick={this.layout} className={'fa ' + (this.state.inLayout ? 'playing' : 'pausing')}></a>
+          <a onClick={this.layout} className={'fa ' + (this.props.sigma.isForceAtlas2Running() ? 'playing' : 'pausing')}></a>
         </div>
         <div className="tool">
           <a onClick={this.zoom} className="fa fa-plus"></a>
@@ -86,6 +93,8 @@ module.exports = React.createClass({
 
     if (!graph)
       return;
+
+    this.sigma.killForceAtlas2();
 
     this.sigma.graph.clear().read(graph);
 

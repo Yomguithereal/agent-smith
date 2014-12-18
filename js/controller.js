@@ -62,7 +62,9 @@ controller.on({
 
   // Requesting sample data about a precise label
   'query:label': function(e) {
-    this.cypher('MATCH n RETURN n LIMIT 50;');
+    this.cypher(
+      'MATCH (n:`' + e.data + '`) WITH n LIMIT 100 MATCH (n)-[r]-(t) RETURN n,r,t;'
+    );
   }
 });
 

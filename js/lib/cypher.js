@@ -12,11 +12,21 @@ function createNode(n) {
     id: n.id,
     x: Math.random(),
     y: Math.random(),
-    size: 1,
+    size: Math.random(),
     label: heuristics.label(n),
-    color: '#ccc',
+    color: '#000',
     properties: n.properties,
     labels: n.labels
+  };
+}
+
+function createEdge(e) {
+  return {
+    id: e.id,
+    source: e.startNode,
+    target: e.endNode,
+    properties: e.properties,
+    color: '#ccc'
   };
 }
 
@@ -37,9 +47,15 @@ module.exports = function(results, palette) {
         if (!idx.nodes.has(node.id)) {
 
           // Creating node
-          graph.nodes.push(createNode(node));
+          graph.nodes.push(createNode(node, palette));
           idx.nodes.add(node.id);
         }
+      });
+
+      line.graph.relationships.forEach(function(edge) {
+
+        // Creating edge
+        graph.edges.push(createEdge(edge));
       });
     });
 
