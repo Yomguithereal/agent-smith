@@ -6,7 +6,7 @@
  */
 var _ = require('lodash'),
     parser = require('./lib/cypher.js'),
-    palette = require('./palette.json');
+    palette = require('./palette.js');
 
 module.exports = {
 

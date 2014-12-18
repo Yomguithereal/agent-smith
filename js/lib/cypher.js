@@ -30,7 +30,7 @@ function createEdge(e) {
   };
 }
 
-module.exports = function(results, palette) {
+module.exports = function(results) {
   var idx = {
     nodes: new Set(),
     edges: new Set()
@@ -47,7 +47,7 @@ module.exports = function(results, palette) {
         if (!idx.nodes.has(node.id)) {
 
           // Creating node
-          graph.nodes.push(createNode(node, palette));
+          graph.nodes.push(createNode(node));
           idx.nodes.add(node.id);
         }
       });

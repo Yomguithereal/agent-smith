@@ -15,10 +15,9 @@ var opts = {
 
 var bundler = browserify(opts)
     .transform(reactify)
-    .transform(es6ify.configure(/^(?!.*iwanthue)+.+\.jsx?$/))
+    .transform(es6ify.configure(/.jsx?/))
     .external('react')
-    .external('react-router')
-    .external(__dirname + '/../js/lib/sigma.js');
+    .external('react-router');
 
 var watcher = watchify(bundler);
 

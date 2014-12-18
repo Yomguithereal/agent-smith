@@ -5,7 +5,6 @@
  * Component rendering the sigma.js graph and refreshing it when needed.
  */
 var React = require('react'),
-    sigma = require('../lib/sigma.js'),
     controller = require('../controller.js');
 
 /**
@@ -50,10 +49,12 @@ var Controls = React.createClass({
     );
   },
   render: function() {
+    var sig = this.props.sigma;
+
     return (
       <div id="tools">
         <div className="tool">
-          <a onClick={this.layout} className={'fa ' + (this.props.sigma.isForceAtlas2Running() ? 'playing' : 'pausing')}></a>
+          <a onClick={this.layout} className={'fa ' + (sig.isForceAtlas2Running() ? 'playing' : 'pausing')}></a>
         </div>
         <div className="tool">
           <a onClick={this.zoom} className="fa fa-plus"></a>
@@ -78,7 +79,11 @@ module.exports = React.createClass({
   componentWillMount: function() {
 
     // Creating the need sigma graph
-    this.sigma = new sigma();
+    this.sigma = new sigma({
+      settings: {
+        singleHover: true
+      }
+    });
     this.camera = this.sigma.addCamera('main');
   },
   componentDidMount: function() {
@@ -99,6 +104,8 @@ module.exports = React.createClass({
     this.sigma.graph.clear().read(graph);
 
     this.sigma.refresh();
+
+    this.sigma.startForceAtlas2();
   },
   render: function() {
     this.renderGraph();

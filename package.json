@@ -5,7 +5,7 @@
   "main": "./js/main.js",
   "scripts": {
     "start": "http-server -p 8000 & node ./scripts/build.js && fg",
-    "build-vendors": "browserify -r react -r react-router -r './js/lib/sigma.js' -o ./build/vendors.build.js"
+    "build-vendors": "browserify -r react -r react-router -o ./build/vendors.build.js"
   },
   "repository": {
     "type": "git",
