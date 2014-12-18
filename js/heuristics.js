@@ -15,8 +15,8 @@ function label(data) {
   for (let i = 0, l = labelGuesses.length; i < l; i++) {
     let prop = labelGuesses[i];
 
-    if (data[prop])
-      return data[prop];
+    if (data.properties[prop])
+      return data.properties[prop];
   }
   return data.id;
 }

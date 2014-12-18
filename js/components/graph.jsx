@@ -5,7 +5,8 @@
  * Component rendering the sigma.js graph and refreshing it when needed.
  */
 var React = require('react'),
-    sigma = require('../lib/sigma.js');
+    sigma = require('../lib/sigma.js'),
+    controller = require('../controller.js');
 
 /**
  * Controls
@@ -65,37 +66,13 @@ var Controls = React.createClass({
  * Sigma graph
  */
 module.exports = React.createClass({
+  mixins: [controller.mixin],
+  cursor: ['graph'],
   componentWillMount: function() {
 
     // Creating the need sigma graph
     this.sigma = new sigma();
     this.camera = this.sigma.addCamera('main');
-
-    this.sigma.graph.read({
-      nodes: [
-        {
-          id: 1,
-          label: 'Hey',
-          size: 1,
-          x: 1,
-          y: 1
-        },
-        {
-          id: 2,
-          label: 'Ho',
-          size: 2,
-          x: 2,
-          y: 1
-        }
-      ],
-      edges: [
-        {
-          id: 1,
-          source: 1,
-          target: 1
-        }
-      ]
-    });
   },
   componentDidMount: function() {
     this.renderer = this.sigma.addRenderer({
@@ -104,7 +81,19 @@ module.exports = React.createClass({
     });
     this.sigma.refresh();
   },
+  renderGraph: function() {
+    var graph = this.cursor.get();
+
+    if (!graph)
+      return;
+
+    this.sigma.graph.clear().read(graph);
+
+    this.sigma.refresh();
+  },
   render: function() {
+    this.renderGraph();
+
     return (
       <div id="ground">
         <Controls sigma={this.sigma} />

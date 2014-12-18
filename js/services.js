@@ -20,7 +20,9 @@ module.exports = {
       console.log('XHR error', arguments);
     },
     success: function(data) {
-      var results = parser(data.results[0]);
+      var graph = parser(data.results[0]);
+
+      this.select('graph').edit(graph);
     }
   },
 
