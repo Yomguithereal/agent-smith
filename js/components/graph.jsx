@@ -7,6 +7,63 @@
 var React = require('react'),
     sigma = require('../lib/sigma.js');
 
+/**
+ * Controls
+ */
+var Controls = React.createClass({
+  getInitialState: function() {
+    return {inLayout: false};
+  },
+  zoom: function() {
+    var camera = this.props.sigma.cameras.main;
+
+    sigma.misc.animation.camera(
+      camera,
+      {ratio: camera.ratio / 1.5},
+      {duration: 150}
+    );
+  },
+  unzoom: function() {
+    var camera = this.props.sigma.cameras.main;
+
+    sigma.misc.animation.camera(
+      camera,
+      {ratio: camera.ratio * 1.5},
+      {duration: 150}
+    );
+  },
+  rescale: function() {
+    var camera = this.props.sigma.cameras.main;
+
+    sigma.misc.animation.camera(
+      camera,
+      {x: 0, y: 0, angle: 0, ratio: 1},
+      {duration: 150}
+    );
+  },
+  render: function() {
+    return (
+      <div id="tools">
+        <div className="tool">
+          <a onClick={this.layout} className={'fa ' + (this.state.inLayout ? 'playing' : 'pausing')}></a>
+        </div>
+        <div className="tool">
+          <a onClick={this.zoom} className="fa fa-plus"></a>
+        </div>
+        <div className="tool">
+          <a onClick={this.unzoom} className="fa fa-minus"></a>
+        </div>
+        <div className="tool">
+          <a onClick={this.rescale} className="fa fa-dot-circle-o"></a>
+        </div>
+      </div>
+    );
+  }
+});
+
+/**
+ * Sigma graph
+ */
 module.exports = React.createClass({
   componentWillMount: function() {
 
@@ -27,7 +84,7 @@ module.exports = React.createClass({
           id: 2,
           label: 'Ho',
           size: 2,
-          x: 1,
+          x: 2,
           y: 1
         }
       ],
@@ -48,7 +105,11 @@ module.exports = React.createClass({
     this.sigma.refresh();
   },
   render: function() {
-    return <div />;
+    return (
+      <div id="ground">
+        <Controls sigma={this.sigma} />
+      </div>
+    );
   },
   componentWillUnmount: function () {
 

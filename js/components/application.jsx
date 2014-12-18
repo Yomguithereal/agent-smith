@@ -39,9 +39,7 @@ module.exports = React.createClass({
 
         <div id="playground">
           <div className="inner">
-            <div id="ground">
-              <Graph />
-            </div>
+            <Graph />
           </div>
         </div>
 

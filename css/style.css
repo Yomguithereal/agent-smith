@@ -200,6 +200,7 @@ h2{
 }
 
 #tools .tool{
+  cursor: pointer;
   height: 36px;
   text-align: center;
   width: 36px;
