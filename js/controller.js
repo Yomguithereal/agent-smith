@@ -45,6 +45,8 @@ var controller = new domino({
 
 // Shortcuts
 controller.cypher = function(query) {
+
+  // Triggering request
   controller.request('cypher', {
     data: {
       statements: [
@@ -55,10 +57,18 @@ controller.cypher = function(query) {
       ]
     }
   });
+
+  // Updating query
+  controller.set('query', query);
 };
 
 // Events
 controller.on({
+
+  // Basic query
+  'query': function(e) {
+    this.cypher(e.data);
+  },
 
   // Requesting sample data about a precise label
   'query:label': function(e) {

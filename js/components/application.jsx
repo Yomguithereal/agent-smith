@@ -6,7 +6,8 @@
  */
 var React = require('react'),
     {RouteHandler} = require('react-router'),
-    Graph = require('./graph.jsx');
+    Graph = require('./graph.jsx'),
+    Query = require('./query.jsx');
 
 module.exports = React.createClass({
   render: function() {
@@ -17,7 +18,7 @@ module.exports = React.createClass({
           <div className="inner">
             <div id="logo">Agent Smith</div>
             <div id="query">
-              <textarea rows="1" placeholder="neo4j query ..." ng-model="query"></textarea>
+              <Query />
             </div>
           </div>
         </header>
