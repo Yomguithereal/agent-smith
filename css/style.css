@@ -43,6 +43,7 @@ header #query textarea{
   font-family: 'NovelMonoPro-Regular', 'Source Code Pro', sans-serif;
   margin: 0;
   padding: 6px 10px;
+  resize: none;
 }
 
 nav{

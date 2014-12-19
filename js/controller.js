@@ -5,7 +5,14 @@
  * Main controller holding the app's state.
  */
 var domino = require('domino-js'),
-    services = require('./services.js');
+    services = require('./services.js'),
+    _ = require('lodash');
+
+// Restating from localstorage
+var localData = localStorage.getItem('agentsmith');
+
+if (localData)
+  localData = JSON.parse(localData);
 
 var controller = new domino({
 
@@ -24,8 +31,15 @@ var controller = new domino({
       properties: []
     },
 
+    // Panel state
+    panels: localData.panels || {
+      overview: {
+        selected: null
+      }
+    },
+
     // Misc
-    query: null,
+    query: localData.query || null,
     graph: null
   },
 
@@ -43,6 +57,14 @@ var controller = new domino({
   settings: {
     paramSolver: /:([^\/:]*)/g
   }
+});
+
+// On state update, we record to the localstorage
+// TODO: use cursor merger to optimize this part
+controller.state.on('update', function() {
+  var toSave = _.pick(controller.get(), ['query', 'panels']);
+
+  localStorage.setItem('agentsmith', JSON.stringify(toSave));
 });
 
 // Shortcuts
@@ -70,6 +92,7 @@ controller.on({
   // Basic query
   'query': function(e) {
     this.cypher(e.data);
+    this.select('panels', 'overview', 'selected').edit(null);
   },
 
   // Requesting sample data about a precise label
@@ -77,6 +100,8 @@ controller.on({
     this.cypher(
       'MATCH (n:`' + e.data + '`) WITH n LIMIT 100 MATCH (n)-[r]-(t) RETURN n,r,t;'
     );
+
+    this.select('panels', 'overview', 'selected').edit({type: 'label', name: e.data});
   },
 
   // Requesting sample data about a precise predicate
@@ -84,6 +109,8 @@ controller.on({
     this.cypher(
       'MATCH (n)-[r:`' + e.data + '`]-(t) RETURN n,r,t LIMIT 2000;'
     );
+
+    this.select('panels', 'overview', 'selected').edit({type: 'predicate', name: e.data});
   }
 });
 

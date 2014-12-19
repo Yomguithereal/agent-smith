@@ -18,4 +18,8 @@ controller.request('labels');
 controller.request('predicates');
 // controller.request('properties');
 
+// Running query if there is already a query in state
+if (controller.get('query'))
+  controller.emit('query', controller.get('query'));
+
 module.exports = controller;

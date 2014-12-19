@@ -8,6 +8,19 @@ var React = require('react'),
     {RouteHandler} = require('react-router'),
     controller = require('../../controller.js');
 
+// Handy cursor
+var panelState = controller.select('panels', 'overview');
+
+// Helpers
+function labelSelected() {
+  var selected = panelState.get('selected');
+
+  if (selected && selected.type === 'label')
+    return selected.name;
+  else
+    return false;
+}
+
 /**
  * Label button component
  */
@@ -17,7 +30,7 @@ var LabelButton = React.createClass({
   },
   render: function() {
     return (
-      <div onClick={this.handleClick} className="node-label">
+      <div onClick={this.handleClick} className={'node-label' + (this.props.selected ? ' active' : '')}>
         {this.props.name + ' '}
         <i className="fa fa-circle" style={{color: this.props.color}}></i>
       </div>
@@ -30,15 +43,23 @@ var LabelButton = React.createClass({
  */
 var LabelList = React.createClass({
   mixins: [controller.mixin],
-  cursor: ['data', 'labels'],
+  cursors: {
+    data: ['data', 'labels'],
+    state: ['panels', 'overview', 'selected']
+  },
   render: function() {
     var renderItem = function(label) {
-      return <LabelButton key={label.name} name={label.name} color={label.color} />;
+      var selected = labelSelected();
+
+      return <LabelButton key={label.name}
+                          selected={selected === label.name}
+                          name={label.name}
+                          color={label.color} />;
     };
 
     return (
       <div className="labels">
-        {this.cursor.get().map(renderItem)}
+        {this.cursors.data.get().map(renderItem)}
       </div>
     );
   }
