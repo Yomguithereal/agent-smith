@@ -4,6 +4,7 @@
  *
  * Basic heuristics aiming at finding default values.
  */
+var helpers = require('./helpers.js');
 
 const labelGuesses = [
   'title',
@@ -16,7 +17,7 @@ function label(data) {
     let prop = labelGuesses[i];
 
     if (data.properties[prop])
-      return data.properties[prop];
+      return helpers.truncate(data.properties[prop], 30);
   }
   return data.id;
 }

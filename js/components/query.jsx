@@ -13,6 +13,9 @@ module.exports = React.createClass({
   cursor: ['query'],
   handleChange: function(e) {
     this.cursor.edit(e.target.value);
+
+    // TODO: cannot commit asynchronously here
+    controller.state.commit();
   },
   handleKeyPress: function(e) {
     if (e.which !== 13)
@@ -25,11 +28,11 @@ module.exports = React.createClass({
   render: function() {
     return (
       <textarea rows="1"
+                spellCheck={false}
                 onChange={this.handleChange}
                 onKeyPress={this.handleKeyPress}
                 value={this.cursor.get()}
-                placeholder="Neo4J query ...">
-      </textarea>
+                placeholder="Neo4J query ..." />
     );
   }
 });

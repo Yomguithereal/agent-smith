@@ -7,7 +7,9 @@
 
 // Simple text-truncating function
 function truncate(s, nb) {
-  return s.slice(0, nb);
+  if (s.length < nb)
+    return s;
+  return s.slice(0, nb) + '...';
 }
 
 module.exports = {

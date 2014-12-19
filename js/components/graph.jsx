@@ -81,7 +81,9 @@ module.exports = React.createClass({
     // Creating the need sigma graph
     this.sigma = new sigma({
       settings: {
-        singleHover: true
+        singleHover: true,
+        minNodeSize: 1.5,
+        maxNodeSize: 8.5
       }
     });
     this.camera = this.sigma.addCamera('main');
@@ -99,13 +101,20 @@ module.exports = React.createClass({
     if (!graph)
       return;
 
-    this.sigma.killForceAtlas2();
+    var sig = this.sigma;
 
-    this.sigma.graph.clear().read(graph);
+    sig.killForceAtlas2();
 
-    this.sigma.refresh();
+    sig.graph.clear().read(graph);
 
-    this.sigma.startForceAtlas2();
+    // Applying outdegree for size
+    sig.graph.nodes().forEach(function(n) {
+      n.size = sig.graph.degree(n.id, 'out');
+    });
+
+    sig.refresh();
+
+    sig.startForceAtlas2();
   },
   render: function() {
     this.renderGraph();

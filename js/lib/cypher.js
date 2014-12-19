@@ -12,7 +12,7 @@ function createNode(n) {
     id: n.id,
     x: Math.random(),
     y: Math.random(),
-    size: Math.random(),
+    size: 1,
     label: heuristics.label(n),
     color: '#000',
     properties: n.properties,
@@ -53,9 +53,12 @@ module.exports = function(results) {
       });
 
       line.graph.relationships.forEach(function(edge) {
+        if (!idx.edges.has(edge.id)) {
 
-        // Creating edge
-        graph.edges.push(createEdge(edge));
+          // Creating edge
+          graph.edges.push(createEdge(edge));
+          idx.edges.add(edge.id);
+        }
       });
     });
 
