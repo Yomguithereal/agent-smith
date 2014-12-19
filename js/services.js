@@ -20,7 +20,12 @@ module.exports = {
       console.log('XHR error', arguments);
     },
     success: function(data) {
-      var graph = parser(data.results[0], palette);
+      var p = _(this.get('data', 'labels'))
+        .indexBy('name')
+        .mapValues('color')
+        .value();
+
+      var graph = parser(data.results[0], p);
 
       this.select('graph').edit(graph);
     }

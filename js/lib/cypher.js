@@ -7,14 +7,14 @@
 var _ = require('lodash'),
     heuristics = require('../heuristics.js');
 
-function createNode(n) {
+function createNode(n, p) {
   return {
     id: n.id,
     x: Math.random(),
     y: Math.random(),
     size: 1,
     label: heuristics.label(n),
-    color: '#000',
+    color: n.labels.length ? p[n.labels[0]] : '#000',
     properties: n.properties,
     labels: n.labels
   };
@@ -30,7 +30,7 @@ function createEdge(e) {
   };
 }
 
-module.exports = function(results) {
+module.exports = function(results, palette) {
   var idx = {
     nodes: new Set(),
     edges: new Set()
@@ -47,7 +47,7 @@ module.exports = function(results) {
         if (!idx.nodes.has(node.id)) {
 
           // Creating node
-          graph.nodes.push(createNode(node));
+          graph.nodes.push(createNode(node, palette));
           idx.nodes.add(node.id);
         }
       });

@@ -83,7 +83,9 @@ module.exports = React.createClass({
       settings: {
         singleHover: true,
         minNodeSize: 1.5,
-        maxNodeSize: 8.5
+        maxNodeSize: 5,
+        labelThreshold: 5.2,
+        font: 'Source Code Pro',
       }
     });
     this.camera = this.sigma.addCamera('main');
@@ -109,10 +111,19 @@ module.exports = React.createClass({
 
     // Applying outdegree for size
     sig.graph.nodes().forEach(function(n) {
-      n.size = sig.graph.degree(n.id, 'out');
+      n.size = sig.graph.degree(n.id);
     });
 
     sig.refresh();
+
+    // Rescaling
+    var camera = sig.cameras.main;
+
+    sigma.misc.animation.camera(
+      camera,
+      {x: 0, y: 0, angle: 0, ratio: 1},
+      {duration: 150}
+    );
 
     sig.startForceAtlas2();
   },
