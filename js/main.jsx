@@ -13,8 +13,9 @@ Router.run(routes, function(Handler) {
   React.render(<Handler />, document.body);
 });
 
-// Fetching labels
+// Fetching data
 controller.request('labels');
 controller.request('predicates');
+// controller.request('properties');
 
 module.exports = controller;

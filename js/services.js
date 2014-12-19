@@ -65,5 +65,17 @@ module.exports = {
 
       this.select('data', 'predicates').edit(sorted);
     }
+  },
+
+  // Retrieving a list of properties
+  properties: {
+    url: ':endpoint/db/data/propertykeys',
+    contentType: 'application/json',
+    dataType: 'json',
+    success: function(data) {
+      var sorted = _.sortBy(data, (a, b) => a + b);
+
+      this.select('data', 'properties').edit(sorted);
+    }
   }
 };
