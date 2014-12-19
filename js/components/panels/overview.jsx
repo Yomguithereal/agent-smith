@@ -45,6 +45,41 @@ var LabelList = React.createClass({
 });
 
 /**
+ * Predicate button component
+ */
+var PredicateButton = React.createClass({
+  handleClick: function() {
+    controller.emit('query:predicate', this.props.name);
+  },
+  render: function() {
+    return (
+      <div onClick={this.handleClick} className="node-label">
+        {this.props.name}
+      </div>
+    );
+  }
+});
+
+/**
+ * Predicates List
+ */
+var PredicateList = React.createClass({
+  mixins: [controller.mixin],
+  cursor: ['data', 'predicates'],
+  render: function() {
+    var renderItem = function(name) {
+      return <PredicateButton key={name} name={name} />;
+    };
+
+    return (
+      <div className="labels">
+        {this.cursor.get().map(renderItem)}
+      </div>
+    );
+  }
+});
+
+/**
  * Top-level component
  */
 module.exports = React.createClass({
@@ -53,6 +88,8 @@ module.exports = React.createClass({
       <div className="node-labels">
         <h2>Labels</h2>
         <LabelList />
+        <h2>Predicates</h2>
+        <PredicateList />
       </div>
     );
   }

@@ -19,7 +19,9 @@ var controller = new domino({
 
     // Data
     data: {
-      labels: []
+      labels: [],
+      predicates: [],
+      properties: []
     },
 
     // Misc
@@ -74,6 +76,13 @@ controller.on({
   'query:label': function(e) {
     this.cypher(
       'MATCH (n:`' + e.data + '`) WITH n LIMIT 100 MATCH (n)-[r]-(t) RETURN n,r,t;'
+    );
+  },
+
+  // Requesting sample data about a precise predicate
+  'query:predicate': function(e) {
+    this.cypher(
+      'MATCH (n)-[r:`' + e.data + '`]-(t) RETURN n,r,t LIMIT 2000;'
     );
   }
 });

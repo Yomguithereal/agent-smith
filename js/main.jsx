@@ -15,5 +15,6 @@ Router.run(routes, function(Handler) {
 
 // Fetching labels
 controller.request('labels');
+controller.request('predicates');
 
 module.exports = controller;

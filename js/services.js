@@ -50,5 +50,20 @@ module.exports = {
 
       this.select('data', 'labels').edit(sorted);
     }
+  },
+
+  // Retrieving a list of relationships types
+  predicates: {
+    url: ':endpoint/db/data/relationship/types',
+    contentType: 'application/json',
+    dataType: 'json',
+    success: function(data) {
+
+      var sorted = _(data)
+        .sortBy((a, b) => a + b)
+        .value();
+
+      this.select('data', 'predicates').edit(sorted);
+    }
   }
 };
