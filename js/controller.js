@@ -13,6 +13,8 @@ var localData = localStorage.getItem('agentsmith');
 
 if (localData)
   localData = JSON.parse(localData);
+else
+  localData = {};
 
 var controller = new domino({
 
@@ -21,7 +23,8 @@ var controller = new domino({
 
     // Application configuration
     config: {
-      host: 'localhost'
+      host: 'localhost',
+      port: 7474
     },
 
     // Data
@@ -31,8 +34,8 @@ var controller = new domino({
       properties: []
     },
 
-    // Panel state
-    panels: localData.panels || {
+    // Panels state
+    panels: localData.panels || {
       overview: {
         selected: null
       }
@@ -48,7 +51,7 @@ var controller = new domino({
     endpoint: function() {
       var config = this.get('config');
 
-      return 'http://' + config.host + ':7474';
+      return 'http://' + config.host + ':' + config.port;
     }
   },
 

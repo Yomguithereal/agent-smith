@@ -23,9 +23,11 @@ function createNode(n, p) {
 function createEdge(e) {
   return {
     id: e.id,
+    label: ':' + e.type,
     source: e.startNode,
     target: e.endNode,
     properties: e.properties,
+    predicate: e.type,
     color: '#ccc'
   };
 }

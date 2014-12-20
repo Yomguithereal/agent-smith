@@ -79,6 +79,8 @@ module.exports = React.createClass({
   componentWillMount: function() {
 
     // Creating the need sigma graph
+    // TODO: move this elsewhere
+    // TODO: port edge labels to webgl
     this.sigma = new sigma({
       settings: {
         singleHover: true,
@@ -86,6 +88,7 @@ module.exports = React.createClass({
         maxNodeSize: 5,
         labelThreshold: 5.2,
         font: 'Source Code Pro',
+        edgeLabelSize: 'proportional'
       }
     });
     this.camera = this.sigma.addCamera('main');
