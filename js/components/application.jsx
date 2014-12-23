@@ -6,6 +6,7 @@
  */
 var React = require('react'),
     {RouteHandler} = require('react-router'),
+    Navigation = require('./navigation.jsx'),
     Graph = require('./graph.jsx'),
     Query = require('./query.jsx');
 
@@ -23,13 +24,7 @@ module.exports = React.createClass({
           </div>
         </header>
 
-        <nav>
-          <div className="inner">
-            <a href="#/" ><div>~</div></a>
-            <a href="#/design"><div>d</div></a>
-            <a href="#/settings" className="active"><div>s</div></a>
-          </div>
-        </nav>
+        <Navigation />
 
         <aside>
           <div className="inner">

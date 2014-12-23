@@ -1,14 +1,14 @@
 /**
- * Agent Smith Settings Panel
- * ===========================
+ * Agent Smith Design Panel
+ * =========================
  *
- * Panel giving access to basic settings for the application.
+ * Panel giving enabling the user to set some design options.
  */
 var React = require('react'),
     {RouteHandler} = require('react-router');
 
 module.exports = React.createClass({
   render: function() {
-    return <h2>Settings</h2>;
+    return <h2>Design</h2>;
   }
 });
