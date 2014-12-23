@@ -74,9 +74,18 @@ var Controls = React.createClass({
  * Sigma graph
  */
 module.exports = React.createClass({
-  mixins: [controller.mixin],
-  cursor: ['graph'],
   componentWillMount: function() {
+    var self = this;
+
+    this.cursor = controller.select('graph');
+
+    // Binding graph rendering to model update
+    this.listener = function() {
+      self.renderGraph();
+      self.forceUpdate();
+    };
+
+    this.cursor.on('update', this.listener);
 
     // Creating the need sigma graph
     // TODO: move this elsewhere
@@ -131,8 +140,6 @@ module.exports = React.createClass({
     sig.startForceAtlas2();
   },
   render: function() {
-    this.renderGraph();
-
     return (
       <div id="ground">
         <Controls sigma={this.sigma} />
@@ -140,6 +147,9 @@ module.exports = React.createClass({
     );
   },
   componentWillUnmount: function () {
+
+    // Unbinding listener
+    this.cursor.off('update', this.listener);
 
     // Killing sigma
     this.sigma.kill();
