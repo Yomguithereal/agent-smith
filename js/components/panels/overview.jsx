@@ -127,5 +127,11 @@ module.exports = React.createClass({
         <PredicateList />
       </div>
     );
+  },
+  statics: {
+    willTransitionTo: function() {
+      controller.request('labels');
+      controller.request('predicates');
+    }
   }
 });

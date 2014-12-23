@@ -13,11 +13,6 @@ Router.run(routes, function(Handler) {
   React.render(<Handler />, document.body);
 });
 
-// Fetching data
-controller.request('labels');
-controller.request('predicates');
-// controller.request('properties');
-
 // Running query if there is already a query in state
 var selected = controller.get('panels', 'overview', 'selected');
 
