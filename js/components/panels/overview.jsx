@@ -12,11 +12,20 @@ var React = require('react'),
 var panelState = controller.select('panels', 'overview');
 
 // Helpers
-function labelSelected() {
+function labelSelected(label) {
   var selected = panelState.get('selected');
 
   if (selected && selected.type === 'label')
-    return selected.name;
+    return label === selected.name;
+  else
+    return false;
+}
+
+function predicateSelected(label) {
+  var selected = panelState.get('selected');
+
+  if (selected && selected.type === 'predicate')
+    return label === selected.name;
   else
     return false;
 }
@@ -49,10 +58,10 @@ var LabelList = React.createClass({
   },
   render: function() {
     var renderItem = function(label) {
-      var selected = labelSelected();
+      var selected = labelSelected(label.name);
 
       return <LabelButton key={label.name}
-                          selected={selected === label.name}
+                          selected={selected}
                           name={label.name}
                           color={label.color} />;
     };
@@ -74,7 +83,7 @@ var PredicateButton = React.createClass({
   },
   render: function() {
     return (
-      <div onClick={this.handleClick} className="node-label">
+      <div onClick={this.handleClick} className={'node-label' + (this.props.selected ? ' active' : '')}>
         {this.props.name}
       </div>
     );
@@ -86,15 +95,20 @@ var PredicateButton = React.createClass({
  */
 var PredicateList = React.createClass({
   mixins: [controller.mixin],
-  cursor: ['data', 'predicates'],
+  cursors: {
+    data: ['data', 'predicates'],
+    state: ['panels', 'overview', 'selected']
+  },
   render: function() {
     var renderItem = function(name) {
-      return <PredicateButton key={name} name={name} />;
+      var selected = predicateSelected(name);
+
+      return <PredicateButton selected={selected} key={name} name={name} />;
     };
 
     return (
       <div className="labels">
-        {this.cursor.get().map(renderItem)}
+        {this.cursors.data.get().map(renderItem)}
       </div>
     );
   }

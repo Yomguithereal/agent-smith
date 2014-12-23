@@ -25,10 +25,9 @@ module.exports = React.createClass({
 
         <nav>
           <div className="inner">
-            <a href="/" ><div>~</div></a>
-            <a href="/settings" className="active"><div>s</div></a>
-            <a href="/design"><div>d</div></a>
-            <a href="/agent-smith"><div>w</div></a>
+            <a href="#/" ><div>~</div></a>
+            <a href="#/design"><div>d</div></a>
+            <a href="#/settings" className="active"><div>s</div></a>
           </div>
         </nav>
 

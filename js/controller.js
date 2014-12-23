@@ -56,10 +56,7 @@ var controller = new domino({
   },
 
   // Etc.
-  services: services,
-  settings: {
-    paramSolver: /:([^\/:]*)/g
-  }
+  services: services
 });
 
 // On state update, we record to the localstorage
