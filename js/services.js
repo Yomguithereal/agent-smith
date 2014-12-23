@@ -10,6 +10,21 @@ var _ = require('lodash'),
 
 module.exports = {
 
+  // Getting an estimation about the number of elements in the database
+  allocation: {
+    url: ':endpoint/db/manage/server/jmx/domain/org.neo4j/instance%3Dkernel%230%2Cname%3DPrimitive%20count',
+    success: function(data) {
+      var idx = _.indexBy(data[0].attributes, 'name');
+
+      this.select('data', 'allocation').edit({
+        nodes: idx.NumberOfNodeIdsInUse.value,
+        edges: idx.NumberOfRelationshipIdsInUse.value,
+        properties: idx.NumberOfPropertyIdsInUse.value,
+        predicates: idx.NumberOfRelationshipTypeIdsInUse.value
+      });
+    }
+  },
+
   // Querying the database through cypher
   cypher: {
     url: ':endpoint/db/data/transaction/commit',

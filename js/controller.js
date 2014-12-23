@@ -29,6 +29,7 @@ var controller = new domino({
 
     // Data
     data: {
+      allocation: {},
       labels: [],
       predicates: [],
       properties: []

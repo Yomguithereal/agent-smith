@@ -7,6 +7,29 @@
 var React = require('react'),
     state = require('react-router').State;
 
+const ITEMS = [
+  {
+    url: '',
+    label: '~',
+  },
+  {
+    url: 'info',
+    label: 'i'
+  },
+  {
+    url: 'stats',
+    label: 's'
+  },
+  {
+    url: 'design',
+    label: 'd'
+  },
+  {
+    url: 'settings',
+    label: 'c'
+  }
+];
+
 var Item = React.createClass({
   render: function() {
     return (
@@ -18,21 +41,6 @@ var Item = React.createClass({
   }
 });
 
-var items = [
-  {
-    url: '',
-    label: '~',
-  },
-  {
-    url: 'design',
-    label: 'd'
-  },
-  {
-    url: 'settings',
-    label: 's'
-  }
-];
-
 module.exports = React.createClass({
   mixins: [state],
   render: function() {
@@ -42,7 +50,7 @@ module.exports = React.createClass({
       <nav>
         <div className="inner">
           {
-            items.map(function(item) {
+            ITEMS.map(function(item) {
               return <Item key={item.label}
                            url={item.url}
                            label={item.label}

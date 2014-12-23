@@ -12,10 +12,9 @@ module.exports = React.createClass({
   mixins: [controller.mixin],
   cursor: ['query'],
   handleChange: function(e) {
-    this.cursor.edit(e.target.value);
 
     // TODO: cannot commit asynchronously here
-    controller.state.commit();
+    this.cursor.edit(e.target.value).commit();
   },
   handleKeyPress: function(e) {
     if (e.which !== 13)
