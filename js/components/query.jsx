@@ -26,12 +26,18 @@ module.exports = React.createClass({
   },
   render: function() {
     return (
-      <textarea rows="1"
-                spellCheck={false}
-                onChange={this.handleChange}
-                onKeyPress={this.handleKeyPress}
-                value={this.cursor.get()}
-                placeholder="Neo4J query ..." />
+      <div className="grid">
+        <div>
+          <textarea rows="1"
+                    spellCheck={false}
+                    onChange={this.handleChange}
+                    onKeyPress={this.handleKeyPress}
+                    value={this.cursor.get()}
+                    placeholder="Neo4J query ..." />
+        </div>
+        <button ><i className="fa fa-save"></i></button>
+        <button className="primary"><i className="fa fa-play"></i></button>
+      </div>
     );
   }
 });
