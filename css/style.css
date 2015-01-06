@@ -33,7 +33,33 @@ header #logo{
 
 header #query{
   margin-left: 268px;
-  padding: 10px 20px;
+  padding: 10px 0 10px 20px;
+  position:relative;
+}
+
+header #query .grid>div{/*textarea container*/
+  position:absolute;
+  padding: 0;
+  left:0;
+  right: 66px;
+  background: gold;
+  height: 28px;
+  overflow: hidden
+}
+
+header #query .grid>button{
+  width: 28px;
+  height: 28px;
+  float: right;
+  background: #ebebeb;
+  box-shadow: none;
+  border: 0px;
+
+}
+
+header #query .grid>button.primary{
+  background: #1d1d1d;
+  color: white;
 }
 
 header #query textarea{
@@ -42,8 +68,9 @@ header #query textarea{
   width: 100%;
   font-family: 'NovelMonoPro-Regular', 'Source Code Pro', sans-serif;
   margin: 0;
-  padding: 6px 10px;
+  line-height: 26px;
   resize: none;
+  padding-left: 5px;
 }
 
 nav{
@@ -154,8 +181,9 @@ aside>.inner{
 h2{
   font-family: 'NovelSansPro-Regular';
   padding: 10px;
-  text-transform: uppercase;
-  font-size: 11px;
+  text-transform: lowercase; 
+  font-variant: small-caps;
+  font-size: 16px;
   margin-bottom :0px;
   margin-top: 20px;
 }
