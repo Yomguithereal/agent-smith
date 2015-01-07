@@ -22,7 +22,7 @@ var controller = new domino({
   state: {
 
     // Application configuration
-    config: {
+    config: localData.config || {
       host: 'localhost',
       port: 7474
     },
@@ -63,7 +63,7 @@ var controller = new domino({
 // On state update, we record to the localstorage
 // TODO: use cursor merger to optimize this part
 controller.state.on('update', function() {
-  var toSave = _.pick(controller.get(), ['query', 'panels']);
+  var toSave = _.pick(controller.get(), ['config', 'query', 'panels']);
 
   localStorage.setItem('agentsmith', JSON.stringify(toSave));
 });

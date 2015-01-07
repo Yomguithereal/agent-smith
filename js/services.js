@@ -40,6 +40,8 @@ module.exports = {
         .mapValues('color')
         .value();
 
+      console.log(data.results[0]);
+
       var graph = parser(data.results[0], p);
 
       this.select('graph').edit(graph);
