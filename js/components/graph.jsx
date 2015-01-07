@@ -100,13 +100,24 @@ module.exports = React.createClass({
         edgeLabelSize: 'proportional'
       }
     });
+
+    // Creating camera
     this.camera = this.sigma.addCamera('main');
   },
   componentDidMount: function() {
+
+    // Creating renderer
     this.renderer = this.sigma.addRenderer({
       camera: 'main',
       container: this.getDOMNode()
     });
+
+    // Binding events
+    this.sigma.bind('clickNode', function(e) {
+      controller.emit('node:information', {node: e.data.node});
+    });
+
+    // Refreshing instance
     this.sigma.refresh();
   },
   renderGraph: function() {

@@ -6,7 +6,8 @@
  */
 var React = require('react'),
     {RouteHandler} = require('react-router'),
-    controller = require('../../controller.js');
+    controller = require('../../controller.js'),
+    _ = require('lodash');
 
 // Handy cursor
 var panelState = controller.select('panels', 'overview');
@@ -115,6 +116,53 @@ var PredicateList = React.createClass({
 });
 
 /**
+ * Temporary node information display
+ */
+var NodeInformation = React.createClass({
+  componentWillMount: function() {
+    var self = this;
+
+    this.listener = function(e) {
+      self.setState(e.data);
+    };
+
+    controller.on('node:information', this.listener);
+  },
+  componentWillUnmount: function() {
+    controller.off('node:information', this.listener);
+  },
+  getInitialState: function() {
+    return {};
+  },
+  render: function() {
+    if (!this.state.node)
+      return null;
+
+    var node = this.state.node;
+
+    var detail = function(p) {
+      return (
+        <div key={p.key} className="detail">
+          <h3>{p.key}</h3>&nbsp;
+          <div className="value">{p.value}</div>
+        </div>
+      );
+    };
+
+    var props = [
+      {key: 'id', value: node.id},
+      {key: 'labels', value: node.labels.join(', ')}
+    ].concat(_.keys(node.properties).map(k => {return {key: k, value: node.properties[k]}}));
+
+    return (
+      <div className="details">
+        {props.map(detail)}
+      </div>
+    );
+  }
+});
+
+/**
  * Top-level component
  */
 module.exports = React.createClass({
@@ -125,6 +173,8 @@ module.exports = React.createClass({
         <LabelList />
         <h2>Predicates</h2>
         <PredicateList />
+        <h2>Node Information</h2>
+        <NodeInformation />
       </div>
     );
   },
