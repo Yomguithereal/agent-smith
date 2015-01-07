@@ -152,7 +152,7 @@ var NodeInformation = React.createClass({
     var props = [
       {key: 'id', value: node.id},
       {key: 'labels', value: node.labels.join(', ')}
-    ].concat(_.keys(node.properties).map(k => {return {key: k, value: node.properties[k]}}));
+    ].concat(_.keys(node.properties).map(k => {return {key: k, value: '' + node.properties[k]}}));
 
     return (
       <div className="details">
