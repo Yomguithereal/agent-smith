@@ -40,7 +40,10 @@ module.exports = {
         .mapValues('color')
         .value();
 
-      console.log(data.results[0]);
+      if (data.errors.length)
+        console.log('Error!', data.errors[0]);
+      else
+        console.log('Data!', data.results[0]);
 
       var graph = parser(data.results[0], p);
 
