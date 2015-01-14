@@ -14,7 +14,6 @@ require('brace/theme/dawn');
 
 // TODO: cannot bind to app state so drastically
 module.exports = React.createClass({
-  mixins: [controller.mixin],
   componentDidMount: function() {
     var self = this;
 
@@ -26,6 +25,7 @@ module.exports = React.createClass({
     // Configuration
     this.editor.setHighlightActiveLine(false)
     this.editor.renderer.setShowGutter(false);
+    this.editor.renderer.setShowPrintMargin(false);
 
     // Update editor along with the app's state
     this.cursor = controller.select('query');

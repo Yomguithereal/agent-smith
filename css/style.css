@@ -77,6 +77,10 @@ header #query-editor {
   background-color: white;
 }
 
+.ace_hidden-cursors {
+  opacity:0
+}
+
 nav{
   position:fixed;
   height: 100%;
