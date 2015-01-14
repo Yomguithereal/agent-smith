@@ -53,8 +53,12 @@ module.exports = React.createClass({
                placeholder="Neo4J query ...">
           </div>
         </div>
-        <button ><i className="fa fa-save"></i></button>
-        <button className="primary"><i className="fa fa-play"></i></button>
+        <button >
+          <i className="fa fa-save" />
+        </button>
+        <button className="primary">
+          <i className="fa fa-play" />
+        </button>
       </div>
     );
   },
