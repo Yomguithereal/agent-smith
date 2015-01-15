@@ -42,8 +42,10 @@ header #query .grid>div{/*textarea container*/
   padding: 0;
   left:0;
   right: 66px;
+  background: #ebebeb;
   height: 28px;
-  overflow: hidden
+  overflow: hidden;
+  padding-left: 10px;
 }
 
 header #query .grid>button{
@@ -53,12 +55,25 @@ header #query .grid>button{
   background: #ebebeb;
   box-shadow: none;
   border: 0px;
+  cursor: pointer;
+  transition: background-color .3s ease-in-out;
+}
 
+header #query .grid>button:hover{
+  background: #fff;
+}
+
+*:focus{
+  outline: none;
 }
 
 header #query .grid>button.primary{
   background: #1d1d1d;
   color: white;
+}
+
+header #query .grid>button.primary:hover{
+  background: #9d9d9d;
 }
 
 header #query textarea{
@@ -67,9 +82,9 @@ header #query textarea{
   width: 100%;
   font-family: 'NovelMonoPro-Regular', 'Source Code Pro', sans-serif;
   margin: 0;
-  line-height: 26px;
+  line-height: 28px;
   resize: none;
-  padding-left: 5px;
+  padding:0;
 }
 
 header #query-editor {
@@ -187,7 +202,7 @@ aside>.inner{
 }
 
 h2{
-  font-family: 'NovelSansPro-Regular';
+  font-family: 'NovelSansPro-Regular', 'Source Sans Pro', sans-serif;
   padding: 10px;
   text-transform: lowercase;
   font-variant: small-caps;
