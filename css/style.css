@@ -87,6 +87,15 @@ header #query textarea{
   padding:0;
 }
 
+header #query-editor {
+  height: 100%;
+  background-color: white;
+}
+
+.ace_hidden-cursors {
+  opacity:0
+}
+
 nav{
   position:fixed;
   height: 100%;
@@ -195,7 +204,7 @@ aside>.inner{
 h2{
   font-family: 'NovelSansPro-Regular', 'Source Sans Pro', sans-serif;
   padding: 10px;
-  text-transform: lowercase; 
+  text-transform: lowercase;
   font-variant: small-caps;
   font-size: 16px;
   margin-bottom :0px;
