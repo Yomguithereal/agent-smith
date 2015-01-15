@@ -14,6 +14,7 @@ require('codemirror/mode/cypher/cypher');
 placeholderAddon(CodeMirror);
 
 module.exports = React.createClass({
+  mixins: [controller.mixin],
   componentDidMount: function() {
     var self = this;
 
@@ -25,8 +26,13 @@ module.exports = React.createClass({
       placeholder: 'Neo4j query...'
     });
 
+    // Adding Ctrl-Enter to keys
+    this.editor.setOption('extraKeys', {
+      'Ctrl-Enter': this.submit
+    });
+
     // Update editor along with the app's state
-    this.cursor = controller.select('query');
+    this.cursor = this.control.select('query');
     this.listener = function() {
       self.editor.doc.setValue(self.cursor.get());
     };
@@ -34,6 +40,10 @@ module.exports = React.createClass({
     // Firing for the first time and binding listener
     this.listener();
     this.cursor.on('update', this.listener);
+  },
+  submit: function() {
+    this.control.emit('query', this.editor.doc.getValue());
+    this.editor.getInputField().blur();
   },
   render: function() {
     return (
