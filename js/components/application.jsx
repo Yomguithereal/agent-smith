@@ -7,8 +7,9 @@
 var React = require('react'),
     {RouteHandler} = require('react-router'),
     Navigation = require('./navigation.jsx'),
-    Graph = require('./graph.jsx'),
-    Query = require('./query.jsx');
+    Graph   = require('./graph.jsx'),
+    Query   = require('./query.jsx'),
+    Mercury = require('./mercury.jsx');
 
 module.exports = React.createClass({
   render: function() {
@@ -35,6 +36,7 @@ module.exports = React.createClass({
         <div id="playground">
           <div className="inner">
             <Graph />
+            <Mercury />
           </div>
         </div>
 
