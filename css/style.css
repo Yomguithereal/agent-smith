@@ -340,9 +340,43 @@ h2{
   bottom: 20px;
   left: 20px;
   background: rgba(0,0,0,.05);
-  padding: 8px 11px;
+  padding: 0;
   line-height: 20px;
   color: #8d8d8d;
+}
+
+#statistics>.inner{
+  float: left;
+  padding: 8px 11px;
+}
+
+#statistics .action{
+  float: left;
+  color: #757575;
+  background: #f5f5f5;
+  left: 100%;
+  top: 0;
+  
+  /* height: 100%; */
+  vertical-align: middle;
+  padding: 8px 11px;
+  cursor: pointer;
+  transition: background-color .3s ease-in-out;
+  }
+
+#statistics .action.selected{
+  background: #757575;
+  color: white;
+}
+
+#statistics .action:hover{
+  background: #fff;
+  color: #1d1d1d;
+}
+
+#statistics .action.selected:hover{
+  background: #757575;
+  color: white;
 }
 
 #statistics .number{
