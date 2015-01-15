@@ -282,3 +282,44 @@ h2{
   content: "\f04b";
 }
 
+
+
+
+#mercury{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#mercury h3{
+  color: white;
+}
+
+#mercury .action{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+}
+#mercury>.inner{
+  pointer-events: auto;
+  position: absolute;
+  background: rgba(239, 0, 47, 0.9);
+  padding: 10px 45px 10px 15px;
+  top: -400px;
+  max-height: 400px;
+  overflow: auto;
+  left: 0;
+  right: 0;
+  color: #f7cad3;
+  transition: top .3s ease-in-out;
+}
+
+#mercury.open>.inner{
+  top: 0;
+
+}
