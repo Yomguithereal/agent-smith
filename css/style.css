@@ -378,6 +378,7 @@ h2{
 
 .cm-s-base16-light.CodeMirror.CodeMirror-focused{
   background: #fefefa;
+  box-shadow: 2px 2px 2px rgba(0,0,0,.07);
 }
 
 .cm-s-base16-light.CodeMirror.CodeMirror-focused .CodeMirror-scroll{
