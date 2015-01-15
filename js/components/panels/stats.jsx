@@ -9,7 +9,7 @@ var React = require('react'),
     controller = require('../../controller.js'),
     _ = require('lodash');
 
-const KEYS = ['nodes', 'edges', 'properties', 'predicates'];
+const KEYS = ['nodes', 'edges'];
 
 var Item = React.createClass({
   render: function() {

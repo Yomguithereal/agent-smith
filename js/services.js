@@ -18,9 +18,7 @@ module.exports = {
 
       this.select('data', 'allocation').edit({
         nodes: idx.NumberOfNodeIdsInUse.value,
-        edges: idx.NumberOfRelationshipIdsInUse.value,
-        properties: idx.NumberOfPropertyIdsInUse.value,
-        predicates: idx.NumberOfRelationshipTypeIdsInUse.value
+        edges: idx.NumberOfRelationshipIdsInUse.value
       });
     }
   },

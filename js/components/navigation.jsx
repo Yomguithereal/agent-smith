@@ -13,10 +13,6 @@ const ITEMS = [
     label: '~',
   },
   {
-    url: 'info',
-    label: 'i'
-  },
-  {
     url: 'stats',
     label: 's'
   },
