@@ -119,26 +119,13 @@ var PredicateList = React.createClass({
  * Temporary node information display
  */
 var NodeInformation = React.createClass({
-  componentWillMount: function() {
-    var self = this;
-
-    this.listener = function(e) {
-      self.setState(e.data);
-    };
-
-    controller.on('node:information', this.listener);
-  },
-  componentWillUnmount: function() {
-    controller.off('node:information', this.listener);
-  },
-  getInitialState: function() {
-    return {};
-  },
+  mixins: [controller.mixin],
+  renderOn: 'node:information',
   render: function() {
-    if (!this.state.node)
+    if (!this.state.event)
       return null;
 
-    var node = this.state.node;
+    var node = this.state.event.data;
 
     var detail = function(p) {
       return (

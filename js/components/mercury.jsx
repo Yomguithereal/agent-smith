@@ -1,6 +1,6 @@
 /**
- * Agent Smith Graph Component
- * ============================
+ * Agent Smith Mercury Component
+ * ==============================
  *
  * Component rendering a message error when your query is far to be correct.
  */
@@ -10,7 +10,7 @@ var React = require('react'),
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      display: true
+      display: false
     }
   },
   close: function() {
@@ -20,10 +20,10 @@ module.exports = React.createClass({
   },
   render: function() {
     return (
-      <div id="mercury" className={this.state.display ?'open': ''}>
+      <div id="mercury" className={this.state.display ? 'open': ''}>
         <div className="inner">
-          <h3>hello react</h3>
-          <div>your awesome erro message</div>
+          <h3>Hello react</h3>
+          <div>Your awesome error message</div>
           <div className="action close" onClick={this.close}><i className="fa fa-times"></i></div>
         </div>
       </div>

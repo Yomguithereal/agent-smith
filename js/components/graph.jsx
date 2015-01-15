@@ -96,8 +96,7 @@ module.exports = React.createClass({
         minNodeSize: 1.5,
         maxNodeSize: 5,
         labelThreshold: 5.2,
-        font: 'Source Code Pro',
-        edgeLabelSize: 'proportional'
+        font: 'Source Code Pro'
       }
     });
 
@@ -114,7 +113,7 @@ module.exports = React.createClass({
 
     // Binding events
     this.sigma.bind('clickNode', function(e) {
-      controller.emit('node:information', {node: e.data.node});
+      controller.emit('node:information', e.data.node);
     });
 
     // Refreshing instance
