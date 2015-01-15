@@ -7,6 +7,7 @@
 var React = require('react'),
     {RouteHandler} = require('react-router'),
     controller = require('../../controller.js'),
+    {nbpp} = require('../../helpers.js'),
     _ = require('lodash');
 
 const KEYS = ['nodes', 'edges'];
@@ -28,7 +29,7 @@ module.exports = React.createClass({
   render: function() {
     var renderItem = function(k) {
       var v = controller.get('data', 'allocation', k);
-      return <Item key={k} name={k} value={v} />;
+      return <Item key={k} name={k} value={nbpp(v)} />;
     };
 
     return (
