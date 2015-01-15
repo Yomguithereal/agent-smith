@@ -14,24 +14,26 @@ const ITEMS = [
   },
   {
     url: 'stats',
-    label: 's'
+    icon: 'table'
   },
   {
     url: 'design',
-    label: 'd'
+    icon: 'paint-brush'
   },
   {
     url: 'settings',
-    label: 'c'
+    icon: 'cogs'
   }
 ];
 
 var Item = React.createClass({
   render: function() {
+    var i = this.props.item;
+
     return (
-      <a href={'#/' + this.props.url}
+      <a href={'#/' + i.url}
          className={this.props.active ? 'active' : ''}>
-        <div>{this.props.label}</div>
+        <div>{i.label ? i.label : <i className={'fa fa-' + i.icon} />}</div>
       </a>
     );
   }
@@ -48,8 +50,7 @@ module.exports = React.createClass({
           {
             ITEMS.map(function(item) {
               return <Item key={item.label}
-                           url={item.url}
-                           label={item.label}
+                           item={item}
                            active={currentPath === '/' + item.url} />
             })
           }

@@ -20,7 +20,10 @@ module.exports = React.createClass({
       });
     });
 
+    // TODO: optimize
     this.control.on('query', this.hide);
+    this.control.on('query:label', this.hide);
+    this.control.on('query:predicate', this.hide);
   },
   getInitialState: function() {
     return {
