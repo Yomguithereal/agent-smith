@@ -285,7 +285,7 @@ h2{
 
 
 /*
-  
+
   Mercury messenger
   ===
 */
@@ -308,6 +308,7 @@ h2{
   top: 10px;
   right: 10px;
   width: 20px;
+  cursor: pointer;
 }
 #mercury>.inner{
   pointer-events: auto;
@@ -330,7 +331,7 @@ h2{
 
 
 /*
-  
+
   Codemirror
   ===
 */

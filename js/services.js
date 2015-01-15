@@ -40,21 +40,31 @@ module.exports = {
         .mapValues('color')
         .value();
 
+      // Handling error
       if (data.errors.length) {
-        console.log('Error!', data.errors[0]);
-      }
-      else {
-        console.log('Data!', data.results[0].columns);
-        console.log('Data!', data.results[0].data.map(function(x) {
-          if (x.row.length < 2)
-            return x.row[0];
-          else
-            return x.row;
-        }));
+        let err = data.errors[0];
+
+        this.emit('error', {
+          title: err.code,
+          message: err.message
+        });
+
+        return;
       }
 
+      // TEMP: console log
+      console.log('Data!', data.results[0].columns);
+      console.log('Data!', data.results[0].data.map(function(x) {
+        if (x.row.length < 2)
+          return x.row[0];
+        else
+          return x.row;
+      }));
+
+      // Generating the graph
       var graph = parser(data.results[0], p);
 
+      // Updating app state
       this.select('graph').edit(graph);
     }
   },

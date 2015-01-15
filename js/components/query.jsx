@@ -20,7 +20,6 @@ module.exports = React.createClass({
 
     // Creating editor
     this.editor = CodeMirror.fromTextArea(this.refs.editor.getDOMNode(), {
-      value: 'var test = "test";',
       mode: 'cypher',
       theme: 'base16-light',
       placeholder: 'Neo4j query...'
@@ -54,7 +53,7 @@ module.exports = React.createClass({
         <button >
           <i className="fa fa-save" />
         </button>
-        <button className="primary">
+        <button className="primary" onClick={this.submit}>
           <i className="fa fa-play" />
         </button>
       </div>

@@ -8,12 +8,33 @@ var React = require('react'),
     controller = require('../controller.js');
 
 module.exports = React.createClass({
+  mixins: [controller.mixin],
+  componentWillMount: function() {
+    var self = this;
+
+    this.control.on('error', function(e) {
+      self.setState({
+        display: true,
+        title: e.data.title,
+        message: e.data.message
+      });
+    });
+
+    this.control.on('query', this.hide);
+  },
   getInitialState: function() {
     return {
+      title: null,
+      message: null,
       display: false
     }
   },
-  close: function() {
+  show: function() {
+    this.setState({
+      display: true
+    });
+  },
+  hide: function() {
     this.setState({
       display: false
     });
@@ -22,9 +43,11 @@ module.exports = React.createClass({
     return (
       <div id="mercury" className={this.state.display ? 'open': ''}>
         <div className="inner">
-          <h3>Hello react</h3>
-          <div>Your awesome error message</div>
-          <div className="action close" onClick={this.close}><i className="fa fa-times"></i></div>
+          <h3>{this.state.title}</h3>
+          <div>{this.state.message}</div>
+          <div className="action close" onClick={this.hide}>
+            <i className="fa fa-times" />
+          </div>
         </div>
       </div>
     );
