@@ -14,9 +14,9 @@ header{
   top: 0;
   left: 0;
   width: 100%;
-  height: 48px;
+  /*height: 48px;*/
   z-index: 4;
-  overflow: hidden;
+  /*overflow: hidden;*/
   background: #f5f5f5;
 }
 
@@ -43,8 +43,8 @@ header #query .grid>div{/*textarea container*/
   left:0;
   right: 66px;
   background: #ebebeb;
-  height: 28px;
-  overflow: hidden;
+  /*height: 28px;
+  overflow: hidden;*/
   padding-left: 10px;
 }
 
@@ -284,7 +284,11 @@ h2{
 
 
 
-
+/*
+  
+  Mercury messenger
+  ===
+*/
 #mercury{
   position: absolute;
   top: 0;
@@ -322,4 +326,39 @@ h2{
 #mercury.open>.inner{
   top: 0;
 
+}
+
+
+/*
+  
+  Codemirror
+  ===
+*/
+.CodeMirror {
+  /* Set height, width, borders, and global font properties here */
+  font-family: 'NovelMonoPro-Regular', 'Source Code Pro', sans-serif;
+  height: auto;
+  line-height: 20px;
+}
+
+.CodeMirror.closed .CodeMirror-scroll{
+  height: 28px;
+  max-height:400px;
+}
+
+.CodeMirror-scroll {
+  height: 28px;
+  max-height: 300px;
+}
+
+.cm-s-base16-light.CodeMirror{
+  background: #ebebeb;
+}
+
+.cm-s-base16-light.CodeMirror.CodeMirror-focused{
+  background: #fefefa;
+}
+
+.cm-s-base16-light.CodeMirror.CodeMirror-focused .CodeMirror-scroll{
+  height: auto;
 }
