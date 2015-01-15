@@ -332,6 +332,26 @@ h2{
 
 /*
 
+  Statistics.jsx react comonent
+  ===
+*/
+#statistics{
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0,0,0,.05);
+  padding: 8px 11px;
+  line-height: 20px;
+  color: #8d8d8d;
+}
+
+#statistics .number{
+  color: #000;
+  font-weight: 500;
+}
+
+/*
+
   Codemirror
   ===
 */
