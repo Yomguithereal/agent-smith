@@ -11,9 +11,16 @@ var React = require('react'),
  * Mode Item
  */
 var ModeItem = React.createClass({
+  handleClick: function() {
+
+    // TODO: pure render mixin should solve this one
+    if (controller.get('mode') !== this.props.mode)
+      controller.set('mode', this.props.mode);
+  },
   render: function() {
     return (
-      <div className={'action' + (this.props.selected ? ' selected' : '')}>
+      <div onClick={this.handleClick}
+           className={'action' + (this.props.selected ? ' selected' : '')}>
         {this.props.mode}
       </div>);
   }
