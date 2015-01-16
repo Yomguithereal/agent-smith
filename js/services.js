@@ -8,11 +8,20 @@ var _ = require('lodash'),
     parser = require('./lib/cypher.js'),
     palette = require('./palette.js');
 
+function error(e) {
+  this.emit('error', {
+    title: 'Network Error',
+    message: 'Check your Internet connection and/or your settings.'
+  });
+  location.href = '/#/settings';
+}
+
 module.exports = {
 
   // Getting an estimation about the number of elements in the database
   allocation: {
     url: ':endpoint/db/manage/server/jmx/domain/org.neo4j/instance%3Dkernel%230%2Cname%3DPrimitive%20count',
+    error: error,
     success: function(data) {
       var idx = _.indexBy(data[0].attributes, 'name');
 
@@ -29,9 +38,7 @@ module.exports = {
     type: 'POST',
     contentType: 'application/json',
     dataType: 'json',
-    error: function() {
-      console.log('XHR error', arguments);
-    },
+    error: error,
     success: function(data) {
       var p = _(this.get('data', 'labels'))
         .indexBy('name')
@@ -72,6 +79,7 @@ module.exports = {
     url: ':endpoint/db/data/labels',
     contentType: 'application/json',
     dataType: 'json',
+    error: error,
     success: function(data) {
 
       var sorted = _(data)
@@ -93,6 +101,7 @@ module.exports = {
     url: ':endpoint/db/data/relationship/types',
     contentType: 'application/json',
     dataType: 'json',
+    error: error,
     success: function(data) {
 
       var sorted = _(data)
@@ -108,6 +117,7 @@ module.exports = {
     url: ':endpoint/db/data/propertykeys',
     contentType: 'application/json',
     dataType: 'json',
+    error: error,
     success: function(data) {
       var sorted = _.sortBy(data, (a, b) => a + b);
 
