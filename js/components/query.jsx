@@ -14,6 +14,7 @@ require('codemirror/mode/cypher/cypher');
 placeholderAddon(CodeMirror);
 
 module.exports = React.createClass({
+  displayName: 'Query',
   mixins: [controller.mixin],
   componentDidMount: function() {
     var self = this;

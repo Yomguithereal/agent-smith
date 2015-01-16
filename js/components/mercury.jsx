@@ -8,6 +8,7 @@ var React = require('react'),
     controller = require('../controller.js');
 
 module.exports = React.createClass({
+  displayName: 'Mercury',
   mixins: [controller.mixin],
   componentWillMount: function() {
     var self = this;

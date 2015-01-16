@@ -40,6 +40,7 @@ var Item = React.createClass({
 });
 
 module.exports = React.createClass({
+  displayName: 'Navigation',
   mixins: [state],
   render: function() {
     var currentPath = this.getPathname();
@@ -49,7 +50,7 @@ module.exports = React.createClass({
         <div className="inner">
           {
             ITEMS.map(function(item) {
-              return <Item key={item.label}
+              return <Item key={item.url}
                            item={item}
                            active={currentPath === '/' + item.url} />
             })

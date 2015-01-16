@@ -39,6 +39,7 @@ var Playground = React.createClass({
  * Main application component
  */
 module.exports = React.createClass({
+  displayName: 'Application',
   render: function() {
     return (
       <div id="layout">

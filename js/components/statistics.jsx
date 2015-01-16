@@ -30,6 +30,7 @@ var ModeItem = React.createClass({
  * Main component
  */
 module.exports = React.createClass({
+  displayName: 'Statistics',
   mixins: [controller.mixin],
   cursors: {
     graph: ['graph'],
