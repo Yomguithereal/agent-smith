@@ -32,6 +32,11 @@ const defaults = {
     properties: []
   },
 
+  // Color palettes
+  palettes: {
+    labels: {}
+  },
+
   // Panels state
   panels: {
     overview: {
@@ -70,6 +75,7 @@ controller.state.on('update', function() {
     'config',
     'query',
     'panels',
+    'palettes',
     'mode'
   ]);
 
