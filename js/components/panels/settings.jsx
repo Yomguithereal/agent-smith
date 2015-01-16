@@ -5,10 +5,22 @@
  * Panel giving access to basic settings for the application.
  */
 var React = require('react'),
-    {RouteHandler} = require('react-router');
+    {RouteHandler} = require('react-router'),
+    controller = require('../../controller.js');
 
 module.exports = React.createClass({
+  mixins: [controller.mixin],
+  cursor: ['config'],
+  editHost: function(e) {
+    this.cursor.set('host', e.target.value).commit();
+  },
   render: function() {
-    return <h2>Settings</h2>;
+    return (
+      <div>
+        <h2>Settings</h2>
+        <label>Host</label>
+        <input onChange={this.editHost} type="text" value={this.cursor.get('host')} />
+      </div>
+    );
   }
 });
