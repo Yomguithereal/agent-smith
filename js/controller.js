@@ -16,36 +16,39 @@ if (localData)
 else
   localData = {};
 
+const defaults = {
+
+  // Application configuration
+  config: {
+    host: 'localhost',
+    port: 7474
+  },
+
+  // Data
+  data: {
+    allocation: {},
+    labels: [],
+    predicates: [],
+    properties: []
+  },
+
+  // Panels state
+  panels: {
+    overview: {
+      selected: null
+    }
+  },
+
+  // Misc
+  mode: 'graph',
+  query: null,
+  graph: null
+};
+
 var controller = new domino({
 
   // Initial state
-  state: {
-
-    // Application configuration
-    config: localData.config || {
-      host: 'localhost',
-      port: 7474
-    },
-
-    // Data
-    data: {
-      allocation: {},
-      labels: [],
-      predicates: [],
-      properties: []
-    },
-
-    // Panels state
-    panels: localData.panels || {
-      overview: {
-        selected: null
-      }
-    },
-
-    // Misc
-    query: localData.query || null,
-    graph: null
-  },
+  state: _.merge(defaults, localData),
 
   // Facets
   facets: {
@@ -63,7 +66,12 @@ var controller = new domino({
 // On state update, we record to the localstorage
 // TODO: use cursor merger to optimize this part
 controller.state.on('update', function() {
-  var toSave = _.pick(controller.get(), ['config', 'query', 'panels']);
+  var toSave = _.pick(controller.get(), [
+    'config',
+    'query',
+    'panels',
+    'mode'
+  ]);
 
   localStorage.setItem('agentsmith', JSON.stringify(toSave));
 });
