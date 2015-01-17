@@ -5,7 +5,7 @@
  * Various services querying the neo4j database.
  */
 var _ = require('lodash'),
-    parser = require('./lib/cypher.js'),
+    cypher = require('./lib/cypher.js'),
     palette = require('./palette.js');
 
 function error(e) {
@@ -57,20 +57,15 @@ module.exports = {
         return;
       }
 
-      // TEMP: console log
-      console.log('Data!', data.results[0].columns);
-      console.log('Data!', data.results[0].data.map(function(x) {
-        if (x.row.length < 2)
-          return x.row[0];
-        else
-          return x.row;
-      }));
-
-      // Generating the graph
-      var graph = parser(data.results[0], p);
-
       // Updating app state
-      this.select('graph').edit(graph);
+      this.update({
+        graph: {
+          $set: cypher.parseGraph(data.results[0], p)
+        },
+        rows: {
+          $set: cypher.parseRows(data.results[0])
+        }
+      });
     }
   },
 

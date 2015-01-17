@@ -7,6 +7,19 @@
 var _ = require('lodash'),
     heuristics = require('../heuristics.js');
 
+/**
+ * Data
+ */
+function parseRows(results) {
+  return {
+    headers: results.columns,
+    rows: results.data.map(x => x.row)
+  };
+}
+
+/**
+ * Graph
+ */
 function createNode(n, p) {
   return {
     id: n.id,
@@ -32,7 +45,7 @@ function createEdge(e) {
   };
 }
 
-module.exports = function(results, palette) {
+function parseGraph(results, palette) {
   var idx = {
     nodes: new Set(),
     edges: new Set()
@@ -66,3 +79,9 @@ module.exports = function(results, palette) {
 
   return graph
 };
+
+module.exports = {
+  parseRows: parseRows,
+  parseGraph: parseGraph
+};
+

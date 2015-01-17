@@ -12,6 +12,8 @@ var React = require('react'),
  * Controls
  */
 var Controls = React.createClass({
+  mixins: [controller.mixin],
+  cursor: ['graph'],
   layout: function() {
     var sig = this.props.sigma;
 
@@ -23,25 +25,28 @@ var Controls = React.createClass({
     this.forceUpdate();
   },
   zoom: function() {
+    var camera = this.props.camera;
 
     sigma.misc.animation.camera(
-      this.props.camera,
+      camera,
       {ratio: camera.ratio / 1.5},
       {duration: 150}
     );
   },
   unzoom: function() {
+    var camera = this.props.camera;
 
     sigma.misc.animation.camera(
-      this.props.camera,
+      camera,
       {ratio: camera.ratio * 1.5},
       {duration: 150}
     );
   },
   rescale: function() {
+    var camera = this.props.camera;
 
     sigma.misc.animation.camera(
-      this.props.camera,
+      camera,
       {x: 0, y: 0, angle: 0, ratio: 1},
       {duration: 150}
     );
@@ -81,12 +86,6 @@ module.exports = React.createClass({
       container: this.getDOMNode()
     });
 
-    // Binding events
-    sigInst.bind('clickNode', function(e) {
-      controller.emit('node:information', e.data.node);
-    });
-
-    // Refreshing instance
     sigInst.refresh();
   },
   render: function() {

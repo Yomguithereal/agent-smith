@@ -16,7 +16,7 @@ if (localData)
 else
   localData = {};
 
-const defaults = {
+var state = {
 
   // Application configuration
   config: {
@@ -47,13 +47,14 @@ const defaults = {
   // Misc
   mode: 'graph',
   query: null,
-  graph: null
+  graph: null,
+  table: null
 };
 
 var controller = new domino({
 
   // Initial state
-  state: _.merge(defaults, localData),
+  state: _.merge(state, localData),
 
   // Facets
   facets: {
