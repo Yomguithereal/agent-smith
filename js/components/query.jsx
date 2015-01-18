@@ -34,7 +34,7 @@ module.exports = React.createClass({
     // Update editor along with the app's state
     this.cursor = this.control.select('query');
     this.listener = function() {
-      self.editor.doc.setValue(self.cursor.get());
+      self.editor.doc.setValue(self.cursor.get() || '');
     };
 
     // Firing for the first time and binding listener
@@ -42,7 +42,12 @@ module.exports = React.createClass({
     this.cursor.on('update', this.listener);
   },
   submit: function() {
-    this.control.emit('query', this.editor.doc.getValue());
+    var query = this.editor.doc.getValue().trim();
+
+    if (!query)
+      return;
+
+    this.control.emit('query', query);
     this.editor.getInputField().blur();
   },
   render: function() {

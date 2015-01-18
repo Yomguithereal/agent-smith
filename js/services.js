@@ -62,8 +62,8 @@ module.exports = {
         graph: {
           $set: cypher.parseGraph(data.results[0], p)
         },
-        rows: {
-          $set: cypher.parseRows(data.results[0])
+        table: {
+          $set: cypher.parseTable(data.results[0])
         }
       });
     }

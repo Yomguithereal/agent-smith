@@ -10,7 +10,7 @@ var _ = require('lodash'),
 /**
  * Data
  */
-function parseRows(results) {
+function parseTable(results) {
   return {
     headers: results.columns,
     rows: results.data.map(x => x.row)
@@ -81,7 +81,7 @@ function parseGraph(results, palette) {
 };
 
 module.exports = {
-  parseRows: parseRows,
+  parseTable: parseTable,
   parseGraph: parseGraph
 };
 

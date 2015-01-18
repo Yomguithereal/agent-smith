@@ -356,7 +356,7 @@ h2{
   background: #f5f5f5;
   left: 100%;
   top: 0;
-  
+
   /* height: 100%; */
   vertical-align: middle;
   padding: 8px 11px;
@@ -382,6 +382,11 @@ h2{
 #statistics .number{
   color: #000;
   font-weight: 500;
+}
+
+.data-table {
+  overflow-y: scroll;
+  height: 100%;
 }
 
 /*
