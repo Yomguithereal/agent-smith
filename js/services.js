@@ -13,7 +13,6 @@ function error(e) {
     title: 'Network Error',
     message: 'Check your Internet connection and/or your settings.'
   });
-  location.href = '/#/settings';
 }
 
 module.exports = {
