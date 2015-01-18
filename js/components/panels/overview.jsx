@@ -67,9 +67,11 @@ var LabelList = React.createClass({
                           color={label.color} />;
     };
 
+    var labels = this.cursors.data.get();
+
     return (
       <div className="labels">
-        {this.cursors.data.get().map(renderItem)}
+        {labels.length ? labels.map(renderItem) : '...'}
       </div>
     );
   }
@@ -107,9 +109,11 @@ var PredicateList = React.createClass({
       return <PredicateButton selected={selected} key={name} name={name} />;
     };
 
+    var predicates = this.cursors.data.get();
+
     return (
       <div className="labels">
-        {this.cursors.data.get().map(renderItem)}
+        {predicates.length ? predicates.map(renderItem) : '...'}
       </div>
     );
   }
@@ -164,11 +168,5 @@ module.exports = React.createClass({
         <NodeInformation />
       </div>
     );
-  },
-  statics: {
-    willTransitionTo: function() {
-      controller.request('labels');
-      controller.request('predicates');
-    }
   }
 });

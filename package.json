@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/Yomguithereal/agent-smith",
   "dependencies": {
+    "async": "~0.9.0",
     "codemirror": "^4.11.0",
     "domino-js": "git+https://github.com/jacomyal/domino.js.git#89f8296f4ad6133c3cc2d041c3862264aa2be099",
     "lodash": "^2.4.1",
