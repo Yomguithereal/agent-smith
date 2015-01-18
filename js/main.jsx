@@ -29,6 +29,8 @@ async.parallel([
 
   // Committing data changes before continuing
   // TODO: commit to domino controller
+  // TODO: possibility to merge cursors
+  // TODO: edit a query and design in a display lab
   controller.state.commit();
 
   // Restoring last query

@@ -9,6 +9,7 @@ var React = require('react'),
     Application = require('./components/application.jsx'),
     Overview = require('./components/panels/overview.jsx'),
     Design = require('./components/panels/design.jsx'),
+    Search = require('./components/panels/search.jsx'),
     Stats = require('./components/panels/stats.jsx'),
     Settings = require('./components/panels/settings.jsx');
 
@@ -17,6 +18,7 @@ module.exports = (
   	<DefaultRoute handler={Overview} />
     <NotFoundRoute handler={Overview} />
     <Route name="design" handler={Design} />
+    <Route name="search" handler={Search} />
     <Route name="stats" handler={Stats} />
     <Route name="settings" handler={Settings} />
   </Route>
