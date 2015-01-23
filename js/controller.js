@@ -123,7 +123,7 @@ controller.on({
   // Requesting sample data about a precise predicate
   'query:predicate': function(e) {
     this.cypher(
-      'MATCH (n)-[r:`' + e.data + '`]-(t) RETURN n,r,t LIMIT 2000;'
+      'MATCH (n)-[r:`' + e.data + '`]-(t) RETURN n,r,t LIMIT 1000;'
     );
 
     this.select('panels', 'overview', 'selected').edit({type: 'predicate', name: e.data});
