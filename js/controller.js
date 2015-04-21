@@ -21,7 +21,7 @@ var state = {
   // Application configuration
   config: {
     host: 'localhost',
-    port: 7474
+    port: 7878
   },
 
   // Data
@@ -85,7 +85,7 @@ controller.state.on('update', function() {
 
 // Shortcuts
 controller.cypher = function(query) {
-
+  console.log('cypher');
   // Triggering request
   controller.request('cypher', {
     data: {

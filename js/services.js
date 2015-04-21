@@ -14,7 +14,7 @@ function error(e) {
     message: 'Check your Internet connection and/or your settings.'
   });
 }
-
+console.log('sending')
 module.exports = {
 
   // Getting an estimation about the number of elements in the database
@@ -74,6 +74,9 @@ module.exports = {
     contentType: 'application/json',
     dataType: 'json',
     error: error,
+    before: function() {
+      console.log('sending', arguments)
+    },
     success: function(data) {
 
       var sorted = _(data)

@@ -190,12 +190,28 @@ aside>.inner{
   margin: 10px 10px;
 }
 
-.detail h3{
+.detail h3, .detail label{
   background: #ebebeb;
   display: inline;
   color: #1d1d1d;
   padding: 4px 6px;
 }
+
+.detail input{
+  border: 0;
+  color: #8d8d8d;
+  padding: 4px 6px 3px 6px;
+  margin-left: 10px;
+  font-family: inherit;
+  border-bottom: 1px solid  #8d8d8d;
+}
+
+.detail input:focus{
+  background: #8d8d8d;
+  color: white;
+  border-bottom: 1px solid  transparent;
+}
+
 
 .detail .value{
   display: inline;

@@ -5,6 +5,7 @@
   "main": "./js/main.js",
   "scripts": {
     "start": "http-server -p 3000 & node ./scripts/build.js && fg",
+    "build-app": "node ./scripts/build.js",
     "build-vendors": "browserify -r react -r react-router -o ./build/vendors.build.js"
   },
   "repository": {

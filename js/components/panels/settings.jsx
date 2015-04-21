@@ -14,12 +14,21 @@ module.exports = React.createClass({
   editHost: function(e) {
     this.cursor.set('host', e.target.value).commit();
   },
+  editPort: function(e) {
+    this.cursor.set('port', e.target.value).commit();
+  },
   render: function() {
     return (
-      <div>
+      <div className="details">
         <h2>Settings</h2>
-        <label>Host</label>
-        <input onChange={this.editHost} type="text" value={this.cursor.get('host')} />
+        <div className="detail">
+          <label>Host</label>
+          <input onChange={this.editHost} type="text" value={this.cursor.get('host')} />
+        </div>
+        <div className="detail">
+          <label>Port</label>
+          <input onChange={this.editPort} type="text" value={this.cursor.get('port')} />
+        </div>
       </div>
     );
   }
