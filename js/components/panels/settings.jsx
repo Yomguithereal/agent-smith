@@ -12,10 +12,12 @@ module.exports = React.createClass({
   mixins: [controller.mixin],
   cursor: ['config'],
   editHost: function(e) {
-    this.cursor.set('host', e.target.value).commit();
+    this.cursor.set('host', e.target.value);
+    this.tree.commit();
   },
   editPort: function(e) {
-    this.cursor.set('port', e.target.value).commit();
+    this.cursor.set('port', e.target.value);
+    this.tree.commit();
   },
   render: function() {
     return (
