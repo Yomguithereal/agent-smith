@@ -36,7 +36,14 @@ var state = {
   palettes: {
     labels: {}
   },
-
+  
+  // design and sigma configuration
+  design: {
+    labelThreshold: 5.2,
+    minNodeSize: 1.5,
+    maxNodeSize: 5,
+  },
+  
   // Panels state
   panels: {
     overview: {
@@ -77,6 +84,7 @@ controller.state.on('update', function() {
     'query',
     'panels',
     'palettes',
+    'design',
     'mode'
   ]);
 
@@ -85,7 +93,6 @@ controller.state.on('update', function() {
 
 // Shortcuts
 controller.cypher = function(query) {
-  console.log('cypher');
   // Triggering request
   controller.request('cypher', {
     data: {

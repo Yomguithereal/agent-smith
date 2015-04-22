@@ -7,11 +7,14 @@
 var defaults = require('./defaults.js'),
     controller = require('./controller.js');
 
-var cursor = controller.select('graph');
+var cursor = controller.select('graph'),
+    designCursor = controller.select('design');
+// timeout index for update when design properties change
+var _timeout;
 
 // Creating sigma instance
 var instance = new sigma({
-  settings: defaults.sigma
+  settings: designCursor.get()
 });
 
 // Creating camera
@@ -27,11 +30,18 @@ function rescale() {
 }
 
 function update() {
-  var graph = cursor.get();
+  var graph = cursor.get(),
+      design = designCursor.get();
 
   // Killing ForceAtlas2
   instance.killForceAtlas2();
-
+  
+  // add settings from the design component
+  instance.settings('labelThreshold', design.labelThreshold);
+  instance.settings('minNodeSize', design.minNodeSize);
+  instance.settings('maxNodeSize', design.maxNodeSize);  
+  instance.refresh();
+  
   // Reading new graph
   instance.graph.clear().read(graph);
 
@@ -46,6 +56,12 @@ function update() {
 
 // Listening to graph updates
 cursor.on('update', update);
+
+// Listening to design updates
+designCursor.on('update', function() {
+  clearTimeout(_timeout);
+  _timeout = setTimeout(update, 500);
+});
 
 // Binding events
 instance.bind('clickNode', function(e) {
