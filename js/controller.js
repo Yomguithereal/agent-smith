@@ -21,7 +21,9 @@ var state = {
   // Application configuration
   config: {
     host: 'localhost',
-    port: 7878
+    port: 7878,
+    user: 'neo4j',
+    pass: 'admin'
   },
 
   // Data

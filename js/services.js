@@ -14,13 +14,20 @@ function error(e) {
     message: 'Check your Internet connection and/or your settings.'
   });
 }
-console.log('sending')
+
+function beforeSend(xhr) {
+  var {user, pass} = require('./controller.js').get('config');
+
+  xhr.setRequestHeader('Authorization', 'Basic ' + btoa(user + ':' + pass));
+}
+
 module.exports = {
 
   // Getting an estimation about the number of elements in the database
   allocation: {
     url: ':endpoint/db/manage/server/jmx/domain/org.neo4j/instance%3Dkernel%230%2Cname%3DPrimitive%20count',
     error: error,
+    beforeSend: beforeSend,
     success: function(data) {
       var idx = _.indexBy(data[0].attributes, 'name');
 
@@ -38,6 +45,7 @@ module.exports = {
     contentType: 'application/json',
     dataType: 'json',
     error: error,
+    beforeSend: beforeSend,
     success: function(data) {
       var p = _(this.get('data', 'labels'))
         .indexBy('name')
@@ -74,6 +82,7 @@ module.exports = {
     contentType: 'application/json',
     dataType: 'json',
     error: error,
+    beforeSend: beforeSend,
     before: function() {
       console.log('sending', arguments)
     },
@@ -99,6 +108,7 @@ module.exports = {
     contentType: 'application/json',
     dataType: 'json',
     error: error,
+    beforeSend: beforeSend,
     success: function(data) {
 
       var sorted = _(data)
@@ -115,6 +125,7 @@ module.exports = {
     contentType: 'application/json',
     dataType: 'json',
     error: error,
+    beforeSend: beforeSend,
     success: function(data) {
       var sorted = _.sortBy(data, (a, b) => a + b);
 

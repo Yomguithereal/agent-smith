@@ -11,12 +11,8 @@ var React = require('react'),
 module.exports = React.createClass({
   mixins: [controller.mixin],
   cursor: ['config'],
-  editHost: function(e) {
-    this.cursor.set('host', e.target.value);
-    this.tree.commit();
-  },
-  editPort: function(e) {
-    this.cursor.set('port', e.target.value);
+  editSetting: function(key, e) {
+    this.cursor.set(key, e.target.value);
     this.tree.commit();
   },
   render: function() {
@@ -25,11 +21,19 @@ module.exports = React.createClass({
         <h2>Settings</h2>
         <div className="detail">
           <label>Host</label>
-          <input onChange={this.editHost} type="text" value={this.cursor.get('host')} />
+          <input onChange={this.editSetting.bind(this, 'host')} type="text" value={this.cursor.get('host')} />
         </div>
         <div className="detail">
           <label>Port</label>
-          <input onChange={this.editPort} type="text" value={this.cursor.get('port')} />
+          <input onChange={this.editSetting.bind(this, 'port')} type="text" value={this.cursor.get('port')} />
+        </div>
+        <div className="detail">
+          <label>User</label>
+          <input onChange={this.editSetting.bind(this, 'user')} type="text" value={this.cursor.get('user')} />
+        </div>
+        <div className="detail">
+          <label>Password</label>
+          <input onChange={this.editSetting.bind(this, 'pass')} type="password" value={this.cursor.get('pass')} />
         </div>
       </div>
     );
