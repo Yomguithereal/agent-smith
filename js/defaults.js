@@ -13,9 +13,6 @@ module.exports = {
   // Sigma instance's settings
   sigma: {
     singleHover: true,
-    minNodeSize: 1.5,
-    maxNodeSize: 5,
-    labelThreshold: 5.2,
     font: 'Source Code Pro'
   }
 };

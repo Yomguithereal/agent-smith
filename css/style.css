@@ -206,6 +206,10 @@ aside>.inner{
   border-bottom: 1px solid  #8d8d8d;
 }
 
+.detail input[type=number] {
+  width: 50px;
+}
+
 .detail input:focus{
   background: #8d8d8d;
   color: white;

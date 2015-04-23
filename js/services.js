@@ -83,9 +83,6 @@ module.exports = {
     dataType: 'json',
     error: error,
     beforeSend: beforeSend,
-    before: function() {
-      console.log('sending', arguments)
-    },
     success: function(data) {
 
       var sorted = _(data)
